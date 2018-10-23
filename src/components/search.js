@@ -44,13 +44,12 @@ export default class Search extends React.PureComponent {
   }
 
   clear() {
-    if (this.input.value == '') return
-    this.input.value = ''
+    if (this.props.searchValue === '') return
     this.search('')
   }
 
   handleChange() {
-    this.search(this.input.value)
+    this.search(this.props.searchValue)
   }
 
   handleKeyUp(e) {
@@ -64,7 +63,7 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
+    var { i18n, autoFocus, searchValue } = this.props
     var { icon, isSearching } = this.state
 
     return (
@@ -72,6 +71,7 @@ export default class Search extends React.PureComponent {
         <input
           ref={this.setRef}
           type="text"
+          value={searchValue}
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
